@@ -29,11 +29,10 @@ var filters = {};
 // This function will replace your handleClick function
 function updateFilters() {
 
-
-
-
   // Save the element, value, and id of the filter that was changed
   let date = d3.select("#datetime").property("value")
+  console.log(date);
+
   let city = d3.select("#city").property("value")
   let state = d3.select("#state").property("value")
   let country = d3.select("#country").property("value")
@@ -85,14 +84,14 @@ function filterTable() {
   // Set the filteredData to the tableData
   let filteredData = tableData;
 
-
   // Loop through all of the filters and keep any data that
   // matches the filter values
-
+  console.log(filteredData['date']);
+  
   // Or, using array extras
   Object.entries(filters).forEach(([key, value]) => {
     if (key == 'date') {
-      filteredData = filteredData.filter(row => row.date === value);
+      filteredData = filteredData.filter(row => row.datetime === value);
     }
     if (key == 'city') {
       filteredData = filteredData.filter(row => row.city === value);
@@ -107,7 +106,6 @@ function filterTable() {
       filteredData = filteredData.filter(row => row.shape === value);
     }
   });
-
 
   // Finally, rebuild the table using the filtered Data
   buildTable(filteredData);
